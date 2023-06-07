@@ -1,31 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-export default function ImageForm(props) {
-    const[imageURL, setImageURL] = useState("");
-    const[imageCaption, setImageCaption] = useState("");
+export default function ImageForm({ imageList, setImageList }) {
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageCaption, setImageCaption] = useState("");
 
-
-//  function ImageForm(props){
-//     const[imageUrl, setImageURL] = useState("");
-//     const[imageCaption, setImageCaption] = useState("");
-//     console.log(props.imgURL)
-//     console.log(props.changeURL)
-
-    return(
+  console.log({ imageCaption });
+  console.log({ imageUrl });
+  //add caption and imageURL to listOfImages
+  function handleImageSubmission(event) {
+    event.preventDefault();
+    console.log(imageList);
+    const newImage = { imageUrl: imageUrl, imageCaption: imageCaption };
+    setImageList([newImage, ...imageList]);
+  }
+  return (
     <>
-      <form>
-        {/* <input type="url" name="" id="" />
-        <input type="url" onChange={(e) => props.changeURL(e.target.value)} value={props.imgURL} />
-         */}
-        <input type="url" onChange={(e) => props.setImageUrl(e.target.value)} value={props.imageURL} placeholder='Image URL'/>
-        <textarea type="text" name="caption"  placeholder='Image Caption'/>
-        
-        <input type="button" value="" placeholder='Cancel'/>
-        <input type="button"  placeholder="Add Image" />
-        
+      <form
+        onSubmit={(event) => handleImageSubmission(event)}
+        style={{ display: "flex" }}
+      >
+        <label>Image URL</label>
+        <input
+          type="url"
+          value={imageUrl}
+          onChange={(event) => setImageUrl(event.target.value)}
+        />
+        <label>Image Caption</label>
+        <input
+          type="text"
+          value={imageCaption}
+          onChange={(event) => setImageCaption(event.target.value)}
+          name=""
+          id=""
+        />
+
+        <button>Cancel</button>
+        <input type="submit" value="Submit" />
+
+        {/* <input type="button" value="" placeholder='Cancel'/>
+        <input type="button"  placeholder="Add Image" /> */}
       </form>
     </>
-    );
-   
-
-};
+  );
+}

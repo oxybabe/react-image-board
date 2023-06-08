@@ -13,8 +13,7 @@ function App() {
     <>
       <ImageBoard />
 
-      <ImageList />
-      {/* <ImageForm listOfImages={imageList} changeList={setImageList} /> */}
+      {/* <ImageList /> */}
     </>
   );
 }

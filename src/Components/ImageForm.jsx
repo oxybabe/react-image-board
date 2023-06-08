@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
-export default function ImageForm({ imageList, setImageList }) {
-  const [imageUrl, setImageUrl] = useState("");
-  const [imageCaption, setImageCaption] = useState("");
+export default function ImageForm({ imageItems, setImageItems }) {
+  const [url, setUrl] = useState("");
+  const [caption, setCaption] = useState("");
 
-  console.log({ imageCaption });
-  console.log({ imageUrl });
+  console.log({ caption });
+  console.log({ url });
   //add caption and imageURL to listOfImages
   function handleImageSubmission(event) {
     event.preventDefault();
-    console.log(imageList);
-    const newImage = { imageUrl: imageUrl, imageCaption: imageCaption };
-    setImageList([newImage, ...imageList]);
+    console.log(imageItems);
+    const newImage = { url: url, caption: caption };
+    setImageItems([newImage, ...imageItems]);
   }
   return (
     <>
@@ -22,23 +22,20 @@ export default function ImageForm({ imageList, setImageList }) {
         <label>Image URL</label>
         <input
           type="url"
-          value={imageUrl}
-          onChange={(event) => setImageUrl(event.target.value)}
+          value={url}
+          onChange={(event) => setUrl(event.target.value)}
         />
         <label>Image Caption</label>
         <input
           type="text"
-          value={imageCaption}
-          onChange={(event) => setImageCaption(event.target.value)}
+          value={caption}
+          onChange={(event) => setCaption(event.target.value)}
           name=""
           id=""
         />
 
         <button>Cancel</button>
         <input type="submit" value="Submit" />
-
-        {/* <input type="button" value="" placeholder='Cancel'/>
-        <input type="button"  placeholder="Add Image" /> */}
       </form>
     </>
   );
